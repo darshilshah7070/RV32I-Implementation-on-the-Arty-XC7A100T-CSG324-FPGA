@@ -46,6 +46,20 @@ cd RV32I
 ### Step 4 ###
 Vivado should be installed from their [website](https://www.xilinx.com/support/download.html) (only Vivado is required not there SDK). Here i am using Vivado 2017.2
 
-### Step 5 ###
+### Step 5 ### 
+MakeFile
+
+### Step 6 ###
+Follow Basic Vivado Flow for FPGA design
+- Open Vivado
+- Make Project
+- In the design file [SOC.v](https://github.com/darshilshah7070/RV32I/blob/main/SOC.v), [clockworks.v](https://github.com/darshilshah7070/RV32I/blob/main/clockworks.v), [emitter_uart.v](https://github.com/darshilshah7070/RV32I/blob/main/emitter_uart.v) and [mypll.v](https://github.com/darshilshah7070/RV32I/blob/main/mypll.v) should be there.
+- Run synthesis.
+- add constrain file.[arty.xdc](https://github.com/darshilshah7070/RV32I/blob/main/arty.xdc)
+- Run implenetation
+- Generate Bitstream
+- Send Bitstream to FPGA
+
+  
 
 
