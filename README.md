@@ -5,13 +5,7 @@ This project contains the implementation of a RISC-V core(RV32I) on Arty XC7A100
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Architecture](#architecture)
-- [Features](#features)
-- [Design Overview](#design-overview)
-- [Getting Started](#getting-started)
-- [Simulation and Testing](#simulation-and-testing)
-- [Licensing](#licensing)
-- [Contributing](#contributing)
+- [Getting Started](gettingstarted)
 
 ## Introduction
 
