@@ -28,17 +28,29 @@ Examples contain .c files and .s files which will be converted to hex file By Ma
 
 
 ## Getting Started
+All the steps are written based on Linux Mint 21.3.
+### Step 1 ###
+In the terminal write this commands.
+```bash
+sudo apt update
+sudo apt upgrade
+```
+### step 2 ###
+make sure git is installed.
+```bash
+sudo apt install git
+```
 
-
-
-### Prerequisites
-
-- **Verilog/VHDL Compiler**: The design is written in Verilog. Ensure you have a suitable simulator like ModelSim or XSIM.
-- **Testbench**: The project includes testbenches to simulate the core's behavior.
-- **Development Environment**: You can use any HDL development environment that supports Verilog.
-
-### Clone the Repository
+### step 3 ###
+clone this Repo.
 
 ```bash
-git clone https://github.com/yourusername/riscv-core-design.git
-cd riscv-core-design
+git clone https://github.com/darshilshah7070/RV32I.git
+cd RV32I
+```
+### step 4 ###
+Vivado should be installed from their [website](https://www.xilinx.com/support/download.html) (only Vivado is required not there SDK). Here i am using Vivado 2017.2
+
+### step 5 ###
+
+
