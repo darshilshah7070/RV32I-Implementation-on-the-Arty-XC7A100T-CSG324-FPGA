@@ -1,6 +1,6 @@
 # RISC-V Core Design
 
-This repository contains the implementation of a RISC-V core, designed for educational and research purposes. The project demonstrates the basic principles of RISC-V architecture and its implementation using hardware description languages (HDL).
+This project contains the implementation of a RISC-V core(RV32I) on Arty XC7A100T-CSG324 using Vivado. The project demonstrates the basic principles of RISC-V architecture and its implementation using verilog hardware description languages (HDL).
 
 ## Table of Contents
 
@@ -15,47 +15,21 @@ This repository contains the implementation of a RISC-V core, designed for educa
 
 ## Introduction
 
-RISC-V is an open-source Instruction Set Architecture (ISA) designed to be simple, modular, and extensible. This project implements a basic RISC-V core with the ability to execute a subset of RISC-V instructions. The design is scalable and can be extended to support additional features like floating-point operations, caching, and advanced pipeline stages.
 
-## Architecture
+This core is using basic RV32I instruction set of RISC-V. User can Generate core based on their FPGA because verilog is used. The core is using multicycle flow. The design is mainly inspired by PicoRV32 and FemtoRV32. 
+Here i am using Arty XC7A100T-CSG324 FPGA  for Implementation and for Synthesis, Place&Route and bit-stream generation Vivado is Used (User can use Yosys ,Nextpnr,OpenFPGALoader and Project Xray but for XC7 it is little dificult to use Open Source Softwares than Vivado so here i am using Vivado for simplicity).
+Examples contain .c files and .s files which will be converted to hex file By Makefile and dumped to the core. Output can be viewed by the UART. User can create their own C files also.
 
-The core is based on the RISC-V 32-bit architecture (RV32I), which includes the following components:
+### Prerequisites
 
-- **Register File**: 32 general-purpose registers (32-bits each).
-- **ALU**: Arithmetic and Logic Unit that supports integer operations.
-- **Control Unit**: Decodes instructions and generates control signals.
-- **Instruction Fetch Unit**: Fetches instructions from memory.
-- **Instruction Decode Unit**: Decodes fetched instructions and identifies the operation.
-- **Execution Unit**: Executes ALU operations and memory accesses.
-- **Memory Unit**: Handles data access and storage.
+- **Vivado2017.2>=**: I am using Vivado 2017.2
+- **Linux Based OS**: For easy Flow(user can also use windows but all the dependacies should be installed). I am uisng Linux Mint here.
+- **Arty XC7A100T-CSG324**: Can be any FPGA but modification of the xdc file required.(iverilog or verilator can also be used if user want to simulae. 
 
-## Features
-
-- **RV32I Support**: Implements the base integer instruction set of RISC-V (RV32I).
-- **5-Stage Pipeline**: The design follows a classic 5-stage pipeline: Fetch, Decode, Execute, Memory, and Writeback.
-- **Branch Prediction**: Simple static branch prediction for faster instruction fetching.
-- **Interrupt Handling**: Basic support for interrupt handling and exception management.
-- **Configurable**: The design can be extended to support other RISC-V extensions like M (multiplication and division), A (atomic operations), F (floating-point), etc.
-
-## Design Overview
-
-The RISC-V core is designed using a modular approach, where each functional block (such as the ALU, control unit, and memory unit) is implemented separately. The design follows the principles of:
-
-- **Simplicity**: The core is simple, making it easy to understand and extend.
-- **Pipelining**: The 5-stage pipeline improves throughput by allowing multiple instructions to be processed in parallel.
-- **Scalability**: The modular design makes it easy to add new features, such as support for more instruction sets or optimizations.
-
-### Core Components:
-
-1. **Instruction Fetch (IF)**: The instruction fetch unit loads instructions from memory and forwards them to the decode stage.
-2. **Instruction Decode (ID)**: Decodes the instruction and issues control signals to the other stages.
-3. **Execute (EX)**: Performs arithmetic and logical operations.
-4. **Memory (MEM)**: Handles memory read/write operations.
-5. **Writeback (WB)**: Writes the results back to the register file.
 
 ## Getting Started
 
-To get started with the RISC-V core design, follow these steps:
+
 
 ### Prerequisites
 
