@@ -94,7 +94,8 @@ Follow Basic Vivado Flow for FPGA design
 To see the output:
 - If it is FPGA's LED output You can see on the FPGA.
 - If it is UART Based output
-  in the `EXAMPLES` Directroy there is script called `uart.sh`.
+
+   in the `EXAMPLES` Directroy there is script called `uart.sh`.
 
   ``` bash
     ./uart.sh
