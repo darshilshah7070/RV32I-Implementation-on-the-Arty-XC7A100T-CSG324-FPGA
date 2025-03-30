@@ -98,6 +98,7 @@ To see the output:
 
   ``` bash
     ./uart.sh
-```
+    ```
+
 TO exit `Control + a , Control + x`.
 
