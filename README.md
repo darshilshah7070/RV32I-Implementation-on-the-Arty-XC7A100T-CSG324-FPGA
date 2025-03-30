@@ -1,34 +1,43 @@
 # RISC-V Core Design
 
-This project contains the implementation of a RISC-V core(RV32I) on Arty XC7A100T-CSG324 using Vivado. The project demonstrates the basic principles of RISC-V architecture and its implementation using verilog hardware description languages (HDL).
+This project involves the implementation of a RISC-V core (RV32I) on the Arty XC7A100T-CSG324 FPGA using Vivado. The project demonstrates the basic principles of RISC-V architecture and its implementation using Verilog hardware description language (HDL).
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
 
 ## Introduction
 
+This core implements the basic RV32I instruction set of the RISC-V architecture. Users can generate the core based on their FPGA, as Verilog is used for the design. The core follows a multicycle pipeline flow. The design is primarily inspired by PicoRV32 and FemtoRV32 cores.
 
-This core utilizes the basic RV32I instruction set of RISC-V. Users can generate the core based on their FPGA, as Verilog is used for the design. The core follows a multicycle flow. The design is primarily inspired by PicoRV32 and FemtoRV32.
+For implementation, this project uses the Arty XC7A100T-CSG324 FPGA. Vivado is employed for synthesis, place-and-route, and bitstream generation. While other tools such as Yosys, Nextpnr, OpenFPGALoader, and Project Xray can also be used, Vivado is typically more straightforward when working with XC7 devices. Therefore, Vivado is used in this case for simplicity.
 
-For implementation, I am using the Arty XC7A100T-CSG324 FPGA. Vivado is employed for synthesis, place-and-route, and bit-stream generation. While users can opt for alternative tools such as Yosys, Nextpnr, OpenFPGALoader, and Project Xray, using Vivado is generally more straightforward for XC7 devices. Therefore, Vivado is used in this case for simplicity.
+The provided examples include `.c` and `.s` files, which are compiled into a `.hex` file by a Makefile and loaded onto the core. The output can be observed through UART. Users can also create their own C programs.
 
-The provided examples include .c and .s files, which are converted to a hex file by a Makefile and loaded onto the core. The output can be viewed via UART. Users are also free to create their own C files.
 ### Prerequisites
 
-- **Vivado2017.2>=**: I am using Vivado 2017.2
-- **Linux Based OS**: For easy Flow(user can also use windows but all the dependacies should be installed). I am uisng Linux Mint here.
-- **Arty XC7A100T-CSG324**: Can be any FPGA but modification of the xdc file required.(iverilog or verilator can also be used if user want to simulae. 
+Before proceeding, ensure you have the following:
 
+- **Vivado 2017.2 or later**: I am using Vivado 2017.2 for this project.
+- **Linux-based OS**: The steps in this guide are based on Linux Mint 21.3. While you can use Windows, make sure all dependencies are properly installed. For this project, I am using Linux Mint.
+- **Arty XC7A100T-CSG324**: This specific FPGA is used in this project, but other FPGAs can be used with modifications to the `.xdc` constraint file. Simulation tools like Icarus Verilog or Verilator can also be used if you wish to simulate the design.
+
+![Arty FPGA](https://github.com/darshilshah7070/RV32I/blob/main/images/Arty_FPGA.png)
 
 ## Getting Started
-All the steps are written based on Linux Mint 21.3.
-### Step 1 ###
-In the terminal write this commands.
+
+This guide is based on Linux Mint 21.3. If you are using a different operating system, some steps may vary.
+
+### Step 1: Update your system
+
+Start by updating your system's package list and upgrading all installed packages:
+
 ```bash
 sudo apt update
 sudo apt upgrade
+
 ```
 ### Step 2 ###
 make sure git is installed.
@@ -54,41 +63,43 @@ Make Should be installed in your system because we will be using Makefile.
 sudo apt install make
 ```
 
-now go to EXAMPLES directory 
+Navigate to the `EXAMPLES` directory:
 ``` bash
 cd EXAMPLES
 ```
 
-First you need to install RISC-V toolchain. Fot that i created [download_toolchain.sh](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/download_toolchain.sh). This will download toolchain in the FIRMWARE directory.
+Next, you need to install the RISC-V toolchain. To simplify this process, I have provided a script called [download_toolchain.sh](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/download_toolchain.sh) that will download the necessary toolchain into the FIRMWARE directory:
 ```bash
 ./download_toolchain.sh
 ```
 
-Now you can choose whatever program you like from EXAMPLES.(You can also write your own .c / .s also). Here i am taking [donut.c](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/donut.c).
-By the Makefile you can create .hex file which will be paste into the initial block of Memory of our design.
+After that, you can select any example program from the EXAMPLES directory (you can also write your own .c or .s files). In this case, we will use the [donut.c](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/donut.c) program, but you are free to choose any program.
+
+The Makefile will convert the C code into a .hex file, which will then be loaded into the initial memory block of the design.
 ```verilog
 initial begin
     $readmemh("firmware.hex", MEM);
 end
 ```
-To crete `firmware.hex` :
+To generate `firmware.hex` :
 
 ``` bash
 make donut.bram.hex
 ```
-this will create `firmware.hex` file into the obj_dir.
+this will create `firmware.hex` file into the `obj_dir`.
 
 ### Step 6 ###
 Follow Basic Vivado Flow for FPGA design
 - Open Vivado
 - Make Project
-- In the design file [SOC.v](https://github.com/darshilshah7070/RV32I/blob/main/SOC.v), [clockworks.v](https://github.com/darshilshah7070/RV32I/blob/main/clockworks.v), [emitter_uart.v](https://github.com/darshilshah7070/RV32I/blob/main/emitter_uart.v) and [mypll.v](https://github.com/darshilshah7070/RV32I/blob/main/mypll.v) should be there.
+- In the design file [SOC.v](https://github.com/darshilshah7070/RV32I/blob/main/DESIGN/SOC.v), [clockworks.v](https://github.com/darshilshah7070/RV32I/blob/main/DESIGN/clockworks.v), [emitter_uart.v](https://github.com/darshilshah7070/RV32I/blob/main/DESIGN/emitter_uart.v) and [mypll.v](https://github.com/darshilshah7070/RV32I/blob/main/DESIGN/mypll.v) should be there.
 - Copy and paste `firmware.hex` from obj_dir to the Vivado src folder.(You can also change Makefile for avoiding Manual Copy-paste).
 - Run synthesis.
-- add constrain file.[arty.xdc](https://github.com/darshilshah7070/RV32I/blob/main/arty.xdc)
+- add constrain file.[arty.xdc](https://github.com/darshilshah7070/RV32I/blob/main/DESIGN/arty.xdc)
 - Run implenetation
 - Generate Bitstream
 - Send Bitstream to FPGA
+  
 
 ### Step 7 ###
 To see the output:
@@ -101,9 +112,9 @@ To see the output:
     ./uart.sh
     ```
 
-  If everything by far is worked the output should be(for donut.c):
-  ![Video Description](https://github.com/darshilshah7070/RV32I/blob/main/output_video.mp4)
+ If everything has been set up correctly, the output for the donut.c program should appear, as shown below:
+  ![Output](https://github.com/darshilshah7070/RV32I/blob/main/images/output_video.gif)
 
 
-TO exit `Control + a , Control + x`.
+TO exit the from the script : `Control + a , Control + x`.
 
