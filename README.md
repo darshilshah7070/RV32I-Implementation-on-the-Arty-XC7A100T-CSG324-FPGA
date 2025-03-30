@@ -47,19 +47,56 @@ cd RV32I
 Vivado should be installed from their [website](https://www.xilinx.com/support/download.html) (only Vivado is required not there SDK). Here i am using Vivado 2017.2
 
 ### Step 5 ### 
-MakeFile
+In this Step We will be see how to make hex file from C/RV32i-Assembly.
+Make Should be installed in your system because we will be using Makefile.
+
+``` bash
+sudo apt install make
+```
+
+now go to EXAMPLES directory 
+``` bash
+cd EXAMPLES
+```
+
+First you need to install RISC-V toolchain. Fot that i created [download_toolchain.sh](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/download_toolchain.sh). This will download toolchain in the FIRMWARE directory.
+```bash
+./download_toolchain.sh
+```
+
+Now you can choose whatever program you like from EXAMPLES.(You can also write your own .c / .s also). Here i am taking [donut.c](https://github.com/darshilshah7070/RV32I/blob/main/EXAMPLES/donut.c).
+By the Makefile you can create .hex file which will be paste into the initial block of Memory of our design.
+```verilog
+initial begin
+    $readmemh("firmware.hex", MEM);
+end
+```
+To crete `firmware.hex` :
+
+``` bash
+make donut.bram.hex
+```
+this will create `firmware.hex` file into the obj_dir.
 
 ### Step 6 ###
 Follow Basic Vivado Flow for FPGA design
 - Open Vivado
 - Make Project
 - In the design file [SOC.v](https://github.com/darshilshah7070/RV32I/blob/main/SOC.v), [clockworks.v](https://github.com/darshilshah7070/RV32I/blob/main/clockworks.v), [emitter_uart.v](https://github.com/darshilshah7070/RV32I/blob/main/emitter_uart.v) and [mypll.v](https://github.com/darshilshah7070/RV32I/blob/main/mypll.v) should be there.
+- Copy and paste `firmware.hex` from obj_dir to the Vivado src folder.(You can also change Makefile for avoiding Manual Copy-paste).
 - Run synthesis.
 - add constrain file.[arty.xdc](https://github.com/darshilshah7070/RV32I/blob/main/arty.xdc)
 - Run implenetation
 - Generate Bitstream
 - Send Bitstream to FPGA
 
-  
+### Step 7 ###
+To see the output:
+If it is FPGA's LED output You can see on the FPGA.
+If it is UART Based output
+  in the `EXAMPLES` Directroy there is script called `uart.sh`.
 
+  ``` bash
+./uart.sh
+```
 
