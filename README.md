@@ -97,7 +97,7 @@ To see the output:
   in the `EXAMPLES` Directroy there is script called `uart.sh`.
 
   ``` bash
-./uart.sh
+    ./uart.sh
 ```
 TO exit `Control + a , Control + x`.
 
