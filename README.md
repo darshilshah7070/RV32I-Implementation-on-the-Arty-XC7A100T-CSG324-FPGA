@@ -101,5 +101,9 @@ To see the output:
     ./uart.sh
     ```
 
+  If everything by far is worked the output should be(for donut.c):
+  ![Video Description]((https://github.com/darshilshah7070/RV32I/blob/main/output_video.mp4))
+
+
 TO exit `Control + a , Control + x`.
 
