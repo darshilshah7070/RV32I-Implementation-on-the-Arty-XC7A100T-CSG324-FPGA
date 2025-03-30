@@ -24,7 +24,7 @@ Before proceeding, ensure you have the following:
 - **Linux-based OS**: The steps in this guide are based on Linux Mint 21.3. While you can use Windows, make sure all dependencies are properly installed. For this project, I am using Linux Mint.
 - **Arty XC7A100T-CSG324**: This specific FPGA is used in this project, but other FPGAs can be used with modifications to the `.xdc` constraint file. Simulation tools like Icarus Verilog or Verilator can also be used if you wish to simulate the design.
 
-![Arty FPGA](https://github.com/darshilshah7070/RV32I/blob/main/images/Arty_FPGA.png)
+<img src="https://github.com/darshilshah7070/RV32I/blob/main/images/Arty_FPGA.png" width="500" height="500" />
 
 ## Getting Started
 
