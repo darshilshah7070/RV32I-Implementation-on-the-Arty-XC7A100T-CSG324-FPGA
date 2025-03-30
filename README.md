@@ -92,11 +92,12 @@ Follow Basic Vivado Flow for FPGA design
 
 ### Step 7 ###
 To see the output:
-If it is FPGA's LED output You can see on the FPGA.
-If it is UART Based output
+- If it is FPGA's LED output You can see on the FPGA.
+- If it is UART Based output
   in the `EXAMPLES` Directroy there is script called `uart.sh`.
 
   ``` bash
 ./uart.sh
 ```
+TO exit `Control + a , Control + x`.
 
