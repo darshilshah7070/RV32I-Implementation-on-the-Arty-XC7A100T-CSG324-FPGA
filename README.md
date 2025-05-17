@@ -53,7 +53,7 @@ git clone https://github.com/darshilshah7070/RV32I.git
 cd RV32I
 ```
 ### Step 4 ###
-Vivado should be installed from their [website](https://www.xilinx.com/support/download.html) (only Vivado is required not there SDK). Here i am using Vivado 2017.2
+Vivado should be installed from their [website](https://www.xilinx.com/support/download.html) (only Vivado is required not their SDK). Here i am using Vivado 2017.2
 
 ### Step 5 ### 
 In this Step We will be see how to make hex file from C/RV32i-Assembly.
